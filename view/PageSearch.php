@@ -16,8 +16,6 @@
 
 <div class="container-fluid mb-4"> 
     <h5>View as:</h5>
-    <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true && ($_SESSION['access_level'] == 'admin' || $_SESSION['access_level'] == 'moderate')): ?>
-
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -34,7 +32,6 @@
         </li>
     </ul>
 
-    <?php endif; ?>
 </div>
 
 <script>

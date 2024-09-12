@@ -44,7 +44,7 @@ switch($action) {
         $username = $_SESSION['username'];
         // Call the home method of the user controller with the username
         $user_controller->home($username);
-        echo $_SESSION['discord_code'];
+        
     } else {
         // If the 'username' key does not exist or is empty, show the login prompt
         echo '<script>
