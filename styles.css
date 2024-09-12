@@ -1,0 +1,39 @@
+
+
+.custom-navbar {
+    background-color: #4e73df /* Replace with your desired color */
+}
+
+
+.custom-navbar .navbar-brand {
+    color: #f8f9fc; /* Replace with your desired font color */
+}
+
+.custom-navbar .navbar-nav .nav-link {
+    color: #f8f9fc; /* Change color for nav links */
+}
+
+.custom-navbar .navbar-toggler-icon {
+    color:  #f8f9fc; /* Optional: Change color of the toggler icon */
+}
+
+h3 {
+    color: #4e73df /* Replace with your desired color */
+    
+}
+
+h4 {
+    color: #4e73df /* Replace with your desired color */
+    
+}
+
+
+h5 {
+    color: #4e73df /* Replace with your desired color */
+    
+}
+
+
+.container {
+    margin-top: 20px;
+}
