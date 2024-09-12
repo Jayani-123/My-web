@@ -103,13 +103,12 @@ class DiscordInfo
                     $discord_avatar_url = $avatar ? "https://cdn.discordapp.com/avatars/{$discord_id}/{$avatar}.jpeg" : '';
 
                     // Display the user info
-                    echo "User Info: <br>";
-                    echo "<p>Discord Name: {$discord_name}</p>";
+                    echo "<h5>Welcome  {$discord_name}</h5> <br>";
                     echo "<img src='{$discord_avatar_url}' alt='Discord Avatar' />";
-                    echo "<br>";
+                    echo "<br><br>";
 
                     // Display server info
-                    echo "Discord Server Name: <br>";
+                    echo "<h5>Your Discord Server Names</h5> <br>";
                     if (is_array($server_info)) {
                         $i = 1;
                         foreach ($server_info as $server) {
