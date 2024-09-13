@@ -8,8 +8,9 @@ class PageLog {
     public $request_url; 
     public $access_allowed; 
     public $discord_code; 
+    public $discord_token; 
          
-    public function __construct($id,$session_id,$username, $logtimestamp,$ip_address,$request_url,$access_allowed,$discord_code)    
+    public function __construct($id,$session_id,$username, $logtimestamp,$ip_address,$request_url,$access_allowed,$discord_code,$discord_token)    
     {    
         $this->id = $id;  
         $this->session_id = $session_id;  
@@ -19,5 +20,6 @@ class PageLog {
         $this->request_url= $request_url; 
         $this->access_allowed= $access_allowed;  
         $this->discord_code= $discord_code;  
+        $this->discord_token= $discord_token;  
     }   
 }  

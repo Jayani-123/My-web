@@ -19,7 +19,8 @@ $access_update= isset($_GET['access_update']) ? $_GET['access_update'] : null;
 $search= isset($_POST['search_term']) ? $_POST['search_term'] : null;
 $search= isset($_POST['search_term']) ? $_POST['search_term'] : null;
 $_SESSION['discord_code'] = isset($_GET['code']) ? $_GET['code'] : null;
-//echo($_SESSION['discord_code'] );
+$_SESSION['discord_token'] = isset($_SESSION['discord_token']) ? $_SESSION['discord_token']: null;
+
 // Create an instance of the Controller
 $user_controller = new UserController();
 $pagelog_controller = new PageLogController();
@@ -54,10 +55,10 @@ switch($action) {
     }
     break;
 
-   
+
     case 'discordLogin':
         // Check if the 'username' key exists in the $_SESSION array
-        if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
+        if (isset($_SESSION['username']) && !empty($_SESSION['username'])&& empty($_SESSION['discord_code'])) {
             $pagelog_controller->discordLogin();
         } elseif (isset($_SESSION['discord_code'])) {
             echo '<script>
@@ -73,22 +74,7 @@ switch($action) {
             exit(); // Stop further script execution
         }
         break;
-    
-    case 'discordInfo':
-        // Check if 'username' and 'discord_code' exist in the $_SESSION array
-        if (isset($_SESSION['username']) && !empty($_SESSION['username']) && isset($_SESSION['discord_code']) && !empty($_SESSION['discord_code'])) {
-            $pagelog_controller->discordInfo($_SESSION['discord_code'] );
-        } else {
-            // If the 'username' or 'discord_code' is missing, show the login prompt
-            echo '<script>
-                alert("Please Login to discord!");
-                window.location.href = "index.php?action=login";
-                </script>';
-            exit(); // Stop further script execution
-        }
-        break;
 
-    
     case 'permission':
         $user_controller->permission();
         break;

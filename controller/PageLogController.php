@@ -96,21 +96,21 @@ public function pageLogXML()
 
 public function discordLogin()  
 {   
-    $discordCode = $this->pagelogmodel-> getdiscordLogs(); 
-    if ($discordCode ==null ){
+    $discord_token= $this->pagelogmodel-> getdiscordLogs(); 
+    if ($discord_token ==null ){
         $discordLogin = new DiscordLogin();
         $discordLogin ->output();
     }
     else {
     $discordInfo = new DiscordInfo();
-    $discordInfo->output($discordCode);
+    $discordInfo->output($discord_token);
 }
 
 } 
-public function discordInfo($discordCode )  
+public function discordInfo()  
 {   
     $discordInfo = new DiscordInfo();
-    $discordInfo->output($discordCode);
+    $discordInfo->output();
     }
 
 }

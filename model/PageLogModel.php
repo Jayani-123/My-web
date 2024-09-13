@@ -41,19 +41,41 @@ class PageLogModel
         if ($count_user == 0) {
             // Fallback to session if no record is found in the database
             $discord_code = isset($_SESSION['discord_code']) ? $_SESSION['discord_code'] : null;
+           
         } else {
             // Fetch the discord_code from the database result
             if ($row = $result->fetch_assoc()) {
                 $discord_code = $row['discord_code'];
+               
+            }
+        }
+
+        // Storing Dicord Token
+        $sql = "SELECT discord_token FROM `page_logs` WHERE session_id = ? and discord_token IS NOT NULL ORDER BY id DESC LIMIT 1";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('s',  $session_id);
+        $stmt->execute();
+
+        // Fetch the result
+        $result = $stmt->get_result();
+        $count_user = $result->num_rows;
+
+        if ($count_user == 0) {
+            // Fallback to session if no record is found in the database
+            $discord_token = isset($_SESSION['discord_token']) ? $_SESSION['discord_token'] : null;
+        } else {
+            // Fetch the discord_code from the database result
+            if ($row = $result->fetch_assoc()) {
+                $discord_token = $row['discord_token'];
             }
         }
         
         // Prepare SQL insert statement
-        $stmt = $conn->prepare("INSERT INTO page_logs (session_id, username, logtimestamp, ip_address, request_url, access_allowed,discord_code) 
-                                VALUES (?, ?, ?, ?, ?, ?,?)");
+        $stmt = $conn->prepare("INSERT INTO page_logs (session_id, username, logtimestamp, ip_address, request_url, access_allowed,discord_code,discord_token) 
+                                VALUES (?, ?, ?, ?, ?, ?,?,?)");
         
         // Bind the parameters (s = string, )
-        $stmt->bind_param("sssssss", $session_id, $username, $logtimestamp, $ip_address, $request_url, $access_allowed, $discord_code);
+        $stmt->bind_param("ssssssss", $session_id, $username, $logtimestamp, $ip_address, $request_url, $access_allowed, $discord_code,$discord_token);
         $stmt->execute();
         // Close the statement
         $stmt->close();
@@ -71,7 +93,7 @@ class PageLogModel
        $arr = array();
        while($row = $result->fetch_array(MYSQLI_ASSOC))
        {
-           $arr[$row['id']] = new PageLog($row['id'],$row['session_id'], $row['username'],$row['logtimestamp'],$row['ip_address'],$row['request_url'],$row['access_allowed'],$row['discord_code']);
+           $arr[$row['id']] = new PageLog($row['id'],$row['session_id'], $row['username'],$row['logtimestamp'],$row['ip_address'],$row['request_url'],$row['access_allowed'],$row['discord_code'],$row['discord_token']);
        }
 
        return $arr;
@@ -89,7 +111,7 @@ class PageLogModel
        $arr = array();
        while($row = $result->fetch_array(MYSQLI_ASSOC))
        {
-           $arr[$row['id']] = new PageLog($row['id'],$row['session_id'], $row['username'],$row['logtimestamp'],$row['ip_address'],$row['request_url'],$row['access_allowed'],$row['discord_code']);
+           $arr[$row['id']] = new PageLog($row['id'],$row['session_id'], $row['username'],$row['logtimestamp'],$row['ip_address'],$row['request_url'],$row['access_allowed'],$row['discord_code'],$row['discord_token']);
        }
       
        return $arr;
@@ -104,7 +126,7 @@ class PageLogModel
     $session_id = session_id();
 
     // Prepare the SQL query
-    $sql = "SELECT discord_code FROM `page_logs` WHERE session_id = ? and discord_code IS NOT NULL ORDER BY id DESC LIMIT 1";
+    $sql = "SELECT discord_token FROM  page_logs WHERE session_id = ? and discord_token IS NOT NULL ORDER BY id DESC LIMIT 1";
     $stmt = $conn->prepare($sql);
     
     // Check if prepare was successful
@@ -119,23 +141,23 @@ class PageLogModel
     
     // Fetch the result
     $result = $stmt->get_result();
-    $discord_code = null; // Initialize the discord_code variable
+    $discord_token = null; // Initialize the discord_code variable
 
     if ($result->num_rows == 0) {
         // Fallback to session if no record is found in the database
-        $discord_code = isset($_SESSION['discord_code']) ? $_SESSION['discord_code'] : null;
+        $discord_token = isset($_SESSION['discord_token']) ? $_SESSION['discord_token'] : null;
     } else {
         // Fetch the discord_code from the database result
         if ($row = $result->fetch_assoc()) {
-            $discord_code = $row['discord_code'];
+            $discord_token= $row['discord_token'];
         }
     }
 
     // Close the statement
     $stmt->close();
-    echo $discord_code ;
+    //echo $discord_token ;
     // Return the discord_code
-    return $discord_code;
+    return $discord_token;
 }
 
 }

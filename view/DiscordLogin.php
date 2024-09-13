@@ -15,7 +15,7 @@ class DiscordLogin
 <body>
 <div class='container'>
 <p>Please press the Link to go to discord page</p>
-<a href="https://discord.com/oauth2/authorize?client_id=1283049993837744129&response_type=code&redirect_uri=https%3A%2F%2Flab-d00a6b41-7f81-4587-a3ab-fa25e5f6d9cf.australiaeast.cloudapp.azure.com%3A7107%2FAssignment%2Findex.php%3Faction%3DdiscordInfo&scope=identify+guilds">
+<a href="https://discord.com/oauth2/authorize?client_id=1283049993837744129&response_type=code&redirect_uri=https%3A%2F%2Flab-d00a6b41-7f81-4587-a3ab-fa25e5f6d9cf.australiaeast.cloudapp.azure.com%3A7107%2FAssignment%2Findex.php%3Faction%3DdiscordLogin&scope=identify+guilds">
 Login Discord</a>
                                
 </div>

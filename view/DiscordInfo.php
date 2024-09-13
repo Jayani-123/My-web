@@ -1,5 +1,4 @@
 
-
 <?php
 // Import the Guzzle plugin via Composer (autoload.php)
 require 'vendor/autoload.php';
@@ -12,7 +11,7 @@ use GuzzleHttp\Exception\BadResponseException;
 
 class DiscordInfo
 {
-    public function output($discord_code)
+    public function output($discord_token)
     {
         include "header.php";
    
@@ -38,14 +37,16 @@ class DiscordInfo
             // Discord API and OAuth2 credentials
             $API_ENDPOINT = 'https://discord.com/api/v10';
             $CLIENT_ID = '1283049993837744129';
-            $CLIENT_SECRET = 'WEcb5xynyT6II2ZR_At1938CNVO_FuZh';
-            $REDIRECT_URI = 'https://lab-d00a6b41-7f81-4587-a3ab-fa25e5f6d9cf.australiaeast.cloudapp.azure.com:7107/Assignment/index.php?action=discordInfo';
+            $CLIENT_SECRET = 'QCD1-sTl-K2RgWMEl1ma6MCnjZfYijEF';
+            $REDIRECT_URI = 'https://lab-d00a6b41-7f81-4587-a3ab-fa25e5f6d9cf.australiaeast.cloudapp.azure.com:7107/Assignment/index.php?action=discordLogin';
             //$code = $discord_code ;
             $code =$_SESSION['discord_code'] ;
 
             // The correct token request URL
             $url = $API_ENDPOINT . '/oauth2/token';
-
+           
+            if($discord_token== null){
+                
             // Make the POST request to exchange the authorization code for an access token
             $response = $client->request('POST', $url, [
                 'form_params' => [
@@ -59,16 +60,17 @@ class DiscordInfo
                     'Content-Type' => 'application/x-www-form-urlencoded'
                 ]
             ]);
-
+        
             // Check for a successful response and display the result
             if ($response->getStatusCode() == 200) {
                 // Decode the JSON response body
                 $json = json_decode($response->getBody(), true);
-
+            }}
+            
                 // Extract the access token from the decoded JSON response
-                if (isset($json['access_token'])) {
-                    $access_token = $json['access_token'];
-
+                if (isset($json['access_token'])|| isset($discord_token)) {
+                    $access_token = isset($json['access_token']) ? $json['access_token'] : $discord_token;
+                   
                     // Make another GET request to fetch the authenticated user's details
                     $discord_users_url = 'https://discord.com/api/users/@me';
 
@@ -124,9 +126,8 @@ class DiscordInfo
                 } else {
                     echo "Access token not found in the response.";
                 }
-            } else {
-                echo "Error: " . $response->getStatusCode();
-            }
+            
+            
         } catch (RequestException $e) {
             // Handle general errors
             echo 'General Error: ' . $e->getMessage();
