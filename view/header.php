@@ -14,7 +14,7 @@
     <div class="container-fluid">
     <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
       <a class="navbar-brand" href="index.php?action=home">Home</a>
-      <a class="navbar-brand" href="https://discord.com/oauth2/authorize?client_id=1283049993837744129&response_type=code&redirect_uri=https%3A%2F%2Flab-d00a6b41-7f81-4587-a3ab-fa25e5f6d9cf.australiaeast.cloudapp.azure.com%3A7107%2FAssignment%2Findex.php%3Faction%3DdiscordInfo&scope=identify+guilds">Discord</a>
+      <a class="navbar-brand" href="index.php?action=discordLogin">Discord</a>
       <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true && ($_SESSION['access_level']== 'admin'|| $_SESSION['access_level']== 'moderator')): ?>
       <a class="navbar-brand" href="index.php?action=pageloglist">Page Log</a>
       <?php endif; ?>

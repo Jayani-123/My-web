@@ -3,7 +3,7 @@
             <hr>
             <div class="row">
                 <div class="col-md-6">
-                    <p>&copy; 2024 Your Website. All rights reserved.</p>
+                    <p>&copy; 2024 Website. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-end">
                     <ul class="list-inline footer-links">

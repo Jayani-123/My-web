@@ -10,6 +10,8 @@ include_once("view/PageLogTable.php");
 include_once("view/PageLogXML.php");
 include_once("view/PageLogJSON.php");
 include_once("view/ViewBackToHome.php");
+include_once("view/DiscordLogin.php");
+include_once("view/DiscordInfo.php");
 
 class PageLogController 
 {  
@@ -90,4 +92,25 @@ public function pageLogXML()
     $pagelogXML = new PageLogXML();
     $pagelogXML->output($pagelogDetails);
 }
+
+
+public function discordLogin()  
+{   
+    $discordCode = $this->pagelogmodel-> getdiscordLogs(); 
+    if ($discordCode ==null ){
+        $discordLogin = new DiscordLogin();
+        $discordLogin ->output();
+    }
+    else {
+    $discordInfo = new DiscordInfo();
+    $discordInfo->output($discordCode);
+}
+
+} 
+public function discordInfo($discordCode )  
+{   
+    $discordInfo = new DiscordInfo();
+    $discordInfo->output($discordCode);
+    }
+
 }

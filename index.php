@@ -54,10 +54,11 @@ switch($action) {
     }
     break;
 
+   
     case 'discordLogin':
         // Check if the 'username' key exists in the $_SESSION array
         if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
-            $user_controller->discordLogin();
+            $pagelog_controller->discordLogin();
         } elseif (isset($_SESSION['discord_code'])) {
             echo '<script>
                 window.location.href = "index.php?action=discordInfo";
@@ -76,7 +77,7 @@ switch($action) {
     case 'discordInfo':
         // Check if 'username' and 'discord_code' exist in the $_SESSION array
         if (isset($_SESSION['username']) && !empty($_SESSION['username']) && isset($_SESSION['discord_code']) && !empty($_SESSION['discord_code'])) {
-            $user_controller->discordInfo();
+            $pagelog_controller->discordInfo($_SESSION['discord_code'] );
         } else {
             // If the 'username' or 'discord_code' is missing, show the login prompt
             echo '<script>
@@ -87,6 +88,7 @@ switch($action) {
         }
         break;
 
+    
     case 'permission':
         $user_controller->permission();
         break;

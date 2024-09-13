@@ -12,7 +12,7 @@ use GuzzleHttp\Exception\BadResponseException;
 
 class DiscordInfo
 {
-    public function output()
+    public function output($discord_code)
     {
         include "header.php";
    
@@ -40,7 +40,8 @@ class DiscordInfo
             $CLIENT_ID = '1283049993837744129';
             $CLIENT_SECRET = 'WEcb5xynyT6II2ZR_At1938CNVO_FuZh';
             $REDIRECT_URI = 'https://lab-d00a6b41-7f81-4587-a3ab-fa25e5f6d9cf.australiaeast.cloudapp.azure.com:7107/Assignment/index.php?action=discordInfo';
-            $code = $_SESSION['discord_code'] ;
+            //$code = $discord_code ;
+            $code =$_SESSION['discord_code'] ;
 
             // The correct token request URL
             $url = $API_ENDPOINT . '/oauth2/token';

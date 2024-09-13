@@ -10,8 +10,7 @@ include_once("view/Register.php");
 include_once("view/Home.php");
 include_once("view/Logout.php");
 include_once("view/Permission.php");
-include_once("view/DiscordLogin.php");
-include_once("view/DiscordInfo.php");
+
 
 class UserController 
 {  
@@ -82,20 +81,6 @@ class UserController
         $_SESSION['access_level'] = $user->access_level;
         $home = new Home();
         $home->output($userDetails);
-
-    } 
-
-    public function discordInfo()  
-    {      
-        $discordInfo = new DiscordInfo();
-        $discordInfo->output();
-
-    } 
-
-    public function discordLogin()  
-    {      
-         $discordLogin = new DiscordLogin();
-        $discordLogin ->output();
 
     } 
 
