@@ -44,6 +44,7 @@ class Register
                                 </div>
                                 <div class="col mb-3">
                                     <input type="text" class="form-control" placeholder="Enter Your IP Address" aria-label="ip_address" id="ip_address" name="ip_address">
+                                    <a href = "https://whatismyipaddress.com" target="_blank">Click to find IP Address</a>
                                     <p id="error-message2" style="color:red;"></p>
                                 </div>
                                 <button type="submit" class="btn btn-primary" name="submit">Signup</button>

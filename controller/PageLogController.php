@@ -107,10 +107,10 @@ public function discordLogin()
 }
 
 } 
-public function discordInfo()  
+public function discordInfo($discord_token)  
 {   
     $discordInfo = new DiscordInfo();
-    $discordInfo->output();
+    $discordInfo->output($discord_token);
     }
 
 }

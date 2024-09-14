@@ -38,7 +38,7 @@ class DiscordInfo
             $API_ENDPOINT = 'https://discord.com/api/v10';
             $CLIENT_ID = '1283049993837744129';
             $CLIENT_SECRET = 'QCD1-sTl-K2RgWMEl1ma6MCnjZfYijEF';
-            $REDIRECT_URI = 'https://lab-d00a6b41-7f81-4587-a3ab-fa25e5f6d9cf.australiaeast.cloudapp.azure.com:7107/Assignment/index.php?action=discordLogin';
+            $REDIRECT_URI = 'https://lab-d00a6b41-7f81-4587-a3ab-fa25e5f6d9cf.australiaeast.cloudapp.azure.com:7107/Assignment/index.php?action=discordInfo';
             //$code = $discord_code ;
             $code =$_SESSION['discord_code'] ;
 
@@ -65,12 +65,15 @@ class DiscordInfo
             if ($response->getStatusCode() == 200) {
                 // Decode the JSON response body
                 $json = json_decode($response->getBody(), true);
+                
+                //save the discord token in session
+                $_SESSION['discord_token']=$json['access_token'];
             }}
             
                 // Extract the access token from the decoded JSON response
                 if (isset($json['access_token'])|| isset($discord_token)) {
                     $access_token = isset($json['access_token']) ? $json['access_token'] : $discord_token;
-                   
+     
                     // Make another GET request to fetch the authenticated user's details
                     $discord_users_url = 'https://discord.com/api/users/@me';
 

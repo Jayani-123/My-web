@@ -75,6 +75,10 @@ switch($action) {
         }
         break;
 
+    case 'discordInfo':
+        $pagelog_controller->discordInfo($_SESSION['discord_token'] );
+        break;
+        
     case 'permission':
         $user_controller->permission();
         break;
