@@ -95,11 +95,8 @@ switch($action) {
             if (isset($_SESSION['login']) && $_SESSION['login'] === true && ($_SESSION['access_level'] == 'admin' || $_SESSION['access_level'] == 'moderator')) {
                 $pagelog_controller->pageLogList($action, $search);
             } else {
-           // Ensure no output before sending the header
-           if (!headers_sent()) {
-            header('HTTPS/1.0 403 Forbidden'); // Send 403 Forbidden header
-            }
-            echo "Access denied. You do not have permission to access this page.";
+                $user_controller->denied();
+
             exit(); // Stop further script execution
             }
             break;
@@ -108,8 +105,8 @@ switch($action) {
         if (isset($_SESSION['login']) && $_SESSION['login'] === true && ($_SESSION['access_level'] == 'admin' || $_SESSION['access_level'] == 'moderator')) {
         $pagelog_controller->pageLogTable($action,$search) ;
     } else {
-        include('view/denied.php');
-        echo "Access denied. You do not have permission to access this page.";
+        $user_controller->denied();
+
         exit(); // Stop further script execution
      
     }
@@ -119,8 +116,7 @@ switch($action) {
         if (isset($_SESSION['login']) && $_SESSION['login'] === true && ($_SESSION['access_level'] == 'admin' || $_SESSION['access_level'] == 'moderator')) {
         $pagelog_controller->pageLogJSON($action,$search) ;
     } else {
-        include('view/denied.php');
-        echo "Access denied. You do not have permission to access this page.";
+        $user_controller->denied();
         exit(); // Stop further script execution
     }
     break;
@@ -130,7 +126,7 @@ switch($action) {
         break;
 
     default:
-        $user_controller->login(); // Default action
+        $user_controller->denied(); // Default action
         break;
 }
 

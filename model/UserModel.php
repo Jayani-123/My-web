@@ -19,7 +19,7 @@ class UserModel
         $plain_cpassword = trim($_POST['cpassword']);
         $plain_email = mysqli_real_escape_string($conn, $_POST['email']);
         $plain_ip_address =  $_POST['ip_address'];
-        $plain_access_level = 'admin'; // Default access level for new users
+        $plain_access_level = 'basic'; // Default access level for new users
 
         if ($plain_password !== $plain_cpassword) {
             echo '<script>

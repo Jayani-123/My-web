@@ -10,7 +10,7 @@ include_once("view/Register.php");
 include_once("view/Home.php");
 include_once("view/Logout.php");
 include_once("view/Permission.php");
-
+include_once("view/Denied.php");
 
 class UserController 
 {  
@@ -118,5 +118,11 @@ public function logout() {
 
     $logout = new Logout();
     $logout->output();
+}
+
+public function denied() {
+
+    $denied = new Denied();
+    $denied->output();
 }
 }
