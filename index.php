@@ -9,7 +9,7 @@ ini_set('session.use_only_cookies',1);
 ini_set('session.use_strict_mode',1);
 session_set_cookie_params([
     'lifetime' => 1800,
-    'domain' =>'https://lab-d00a6b41-7f81-4587-a3ab-fa25e5f6d9cf.australiaeast.cloudapp.azure.com:7107',
+    //'domain' =>'https://lab-d00a6b41-7f81-4587-a3ab-fa25e5f6d9cf.australiaeast.cloudapp.azure.com:7107',
     'path' => '/',
     'secure' => true,
     'httponly'=>true

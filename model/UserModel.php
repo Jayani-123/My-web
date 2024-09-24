@@ -155,7 +155,7 @@ public function getUserByUsername($plain_username)
             $plain_username    = $this->decryptdata($row['username']);
             $plain_email       = $this->decryptdata($row['email']);
             $plain_ip_address  = $this->decryptdata($row['ip_address']);
-            $plain_community  = $this->decryptdata($row['community ']);
+            $plain_community  = $this->decryptdata($row['community']);
             $plain_access_level= $this->decryptdata($row['access_level']);
             $arr[$row['id']] = new User($row['id'], $plain_username,$plain_email,$row['password'],$plain_ip_address,$plain_community,$plain_access_level);
         
