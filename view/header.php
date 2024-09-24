@@ -12,6 +12,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
     <div class="container-fluid">
+    
     <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
       <a class="navbar-brand" href="index.php?action=home">Home</a>
       <a class="navbar-brand" href="index.php?action=discordLogin">Discord</a>
@@ -25,10 +26,12 @@
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>  
+      </button> 
+      
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
+          
             <li class="nav-item">
               <a class="nav-link" href="index.php?action=logout"><i class="bi-box-arrow-in-right"></i> Logout</a>
             </li>

@@ -18,6 +18,7 @@ class UserModel
         $plain_password = trim($_POST['password']);
         $plain_cpassword = trim($_POST['cpassword']);
         $plain_email = mysqli_real_escape_string($conn, $_POST['email']);
+        $plain_community = mysqli_real_escape_string($conn, $_POST['community']);
         $plain_ip_address =  $_POST['ip_address'];
         $plain_access_level = 'basic'; // Default access level for new users
 
@@ -32,8 +33,8 @@ class UserModel
         $username = $this->encryptdata( $plain_username);
         $ip_address = $this->encryptdata( $plain_ip_address);
         $email= $this->encryptdata( $plain_email);
+        $community= $this->encryptdata( $plain_community);
         $access_level= $this->encryptdata( $plain_access_level);
-  
         //Prepared statement to prevent SQL injection
         $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
@@ -46,8 +47,8 @@ class UserModel
             // Hash the password
             $hashed_password = password_hash($plain_password, PASSWORD_DEFAULT);   
                         
-            $stmt = $conn->prepare("INSERT INTO users (username, password, ip_address, email, access_level) VALUES (?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssss", $username, $hashed_password, $ip_address, $email, $access_level);
+            $stmt = $conn->prepare("INSERT INTO users (username, password, email,ip_address, community,access_level) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssss", $username, $hashed_password, $email, $ip_address, $community, $access_level);
             if ($stmt->execute()) {
                 echo '<script>
                     alert("Signup Successful!");
@@ -128,10 +129,11 @@ public function getUserByUsername($plain_username)
         $plain_username    = $this->decryptdata($row['username']);
         $plain_email       = $this->decryptdata($row['email']);
         $plain_ip_address  = $this->decryptdata($row['ip_address']);
+        $plain_community   = $this->decryptdata($row['community']);
         $plain_access_level= $this->decryptdata($row['access_level']);
         
         // Create a new User object and store it in the array
-        $arr[$row['id']] = new User($row['id'], $plain_username,$plain_email,$row['password'],$plain_ip_address,$plain_access_level);
+        $arr[$row['id']] = new User($row['id'], $plain_username,$plain_email,$row['password'],$plain_ip_address,$plain_community,$plain_access_level);
     }
 
     // Return the array of User objects
@@ -153,8 +155,9 @@ public function getUserByUsername($plain_username)
             $plain_username    = $this->decryptdata($row['username']);
             $plain_email       = $this->decryptdata($row['email']);
             $plain_ip_address  = $this->decryptdata($row['ip_address']);
+            $plain_community  = $this->decryptdata($row['community ']);
             $plain_access_level= $this->decryptdata($row['access_level']);
-            $arr[$row['id']] = new User($row['id'], $plain_username,$plain_email,$row['password'],$plain_ip_address,$plain_access_level);
+            $arr[$row['id']] = new User($row['id'], $plain_username,$plain_email,$row['password'],$plain_ip_address,$plain_community,$plain_access_level);
         
             }
          return $arr;

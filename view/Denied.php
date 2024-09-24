@@ -1,8 +1,4 @@
 <?php
-// Ensure this is the very first line in your PHP file to avoid headers already being sent.
-//http_response_code(403); // This sets the response code to 403 Forbidden.
-
-// Optionally, you can also send the status using the header function for HTTP/1.1
 header('HTTP/1.0 403 Forbidden');
 
 class Denied
@@ -17,10 +13,12 @@ class Denied
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>Login</title>
+    <title>Denied</title>
 </head>
 
 <body>
+    <h1>404 Forbidden</h1>
+    <p>You do not have permission</p>
 </body>
 </html>
 <?php

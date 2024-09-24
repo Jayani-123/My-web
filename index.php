@@ -3,8 +3,35 @@
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
+
+//Session Security
+ini_set('session.use_only_cookies',1);
+ini_set('session.use_strict_mode',1);
+session_set_cookie_params([
+    'lifetime' => 1800,
+    'domain' =>'https://lab-d00a6b41-7f81-4587-a3ab-fa25e5f6d9cf.australiaeast.cloudapp.azure.com:7107',
+    'path' => '/',
+    'secure' => true,
+    'httponly'=>true
+]
+
+);
+
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
+    if(!isset($_SESSION['last_regeneration'])){
+        session_regenerate_id(true);
+        $_SESSION['last_regeneration'] = time();
+    }else{
+        $interval = 60 * 30;
+        if (time()-$_SESSION['last_regeneration'] >= $interval){
+            session_regenerate_id(true);
+            $_SESSION['last_regeneration'] = time();
+        }
+    }
+    
+
 }
 
 // Include the Controller class

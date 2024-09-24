@@ -20,7 +20,7 @@ class Home
 
       if (isset($_SESSION['login']) && $_SESSION['login'] === true) {
     // User is logged in
-    echo "<h3><i class='bi bi-person'></i> Welcome, " . htmlspecialchars($_SESSION['username']) . "</h3>";
+    echo "<h3><i class='bi bi-person'></i> Welcome " . htmlspecialchars($_SESSION['username']) ." to the Avatar Community </h3>";
 
 } ?>
           <hr>
@@ -35,10 +35,10 @@ class Home
                             echo "<td>Email:</td>";
                             echo "<td>".$user->email."</td>";
                             echo "</tr>";
-                            echo "<tr>";
-                            echo "<td>Password:</td>";
-                            echo "<td>".$user->password."</td>";
+							echo "<td>Community:</td>";
+                            echo "<td>".$user->community."</td>";
                             echo "</tr>";
+                            echo "<tr>";
                             echo "<tr>";
                             echo "<td>IP Address:</td>";
                             echo "<td>".$user->ip_address."</td>";
@@ -73,7 +73,7 @@ try
 	
 	// Check the result, and handle the data
 	if($response->getStatusCode() == 200) 
-	{
+	{ 
 		$user_location = json_decode($response->getBody(), true);
 		//var_dump($json);
 		 // Decode the response and display the user information

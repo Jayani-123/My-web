@@ -93,7 +93,7 @@ class UserController
             $permission->output($allUsers);  // Output permissions for all users
         } else {
             // Send HTTP 403 Forbidden header
-            echo 'You do not have permission to access this page.';
+            $this->denied(); 
             exit;  // Terminate script execution to prevent further processing
         }
     }

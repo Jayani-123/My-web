@@ -23,7 +23,7 @@ class Register
                     <div class='card-body p-5 text-center'>
 
                         <div id='form'>
-                            <h3 class='mb-5'>Signup Form</h3>
+                            <h3 class='mb-5'>Signup to Avatar Community</h3>
                             <form id="signupform" action='index.php?action=register' method='POST'>
                                 <div class="row g-3">
                                     <div class="col mb-3">
@@ -34,6 +34,15 @@ class Register
                                     <input type="text" class="form-control" placeholder="Email" aria-label="email" id="email" name="email">
                                     <p id="error-message" style="color:red;"></p>
                                 </div>
+                                <div class="col mb-3">
+                                <select class="form-select form-select" aria-label="community" id="community" name="community" >
+                                    <option selected>Select the community you would like to join</option>
+                                    <option value="Air">Air Nomads</option>
+                                    <option value="Water">Water Tribe</option>
+                                    <option value="Earth">Earth Kingdom</option>
+                                    <option value="Fire">Fire Nation</option>
+                                    </select>
+                                 </div>
                                 <div class="col mb-3">
                                     <input type="password" class="form-control" placeholder="Password" aria-label="password" id="password" name="password">
                                     <p id="error-message1" style="color:red;"></p>
